@@ -1,13 +1,4 @@
-FROM python:3.6
-RUN mkdir chatApplication
+FROM nginx
 
-copy ./newChatapp/ /chatApplication
-WORKDIR /chatApplication
-
-RUN pip3 install -r requirements.txt
-
-WORKDIR /chatApplication/fundoo
-RUN chmod +x run.sh
-EXPOSE 8000
-
-CMD ["./run.sh"]
+RUN rm /etc/nginx/conf.d/default.conf
+COPY default.conf /etc/nginx/conf.d/
